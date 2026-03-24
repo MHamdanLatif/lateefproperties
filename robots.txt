@@ -1,0 +1,17 @@
+# ============================
+# robots.txt for Lateef Properties
+# ============================
+
+User-agent: *
+Allow: /
+
+# Disallow system or private areas (if any)
+Disallow: /admin/
+Disallow: /scripts/
+Disallow: /config/
+
+# Sitemap location
+Sitemap: https://lateefproperties.com/sitemap.xml
+
+# Crawl delay (optional - slows down aggressive crawlers)
+Crawl-delay: 10
