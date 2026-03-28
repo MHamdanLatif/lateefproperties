@@ -361,6 +361,49 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ✅ Lazy-load map -->
+  <script>
+    (function() {
+      function loadMap(placeholder) {
+        if (!placeholder) return;
+        var src = placeholder.getAttribute('data-src');
+        if (!src) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.title = 'Lateef Duplex Luxuria map';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.style.position = 'absolute';
+        iframe.style.top = 0;
+        iframe.style.left = 0;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        placeholder.parentNode.replaceChild(iframe, placeholder);
+      }
+
+      var placeholder = document.querySelector('.map-placeholder');
+      if (!placeholder) return;
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              loadMap(placeholder);
+              io.disconnect();
+            }
+          });
+        }, { rootMargin: '200px' });
+        io.observe(placeholder);
+      }
+
+      placeholder.addEventListener('click', function() { loadMap(placeholder); });
+      placeholder.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') loadMap(placeholder);
+      });
+    })();
+  </script>
+
   <!-- ✅ FUNNEL -->
   <section class="funnel">
     <h2 class="funnel-title">Your Journey to a New Home</h2>
@@ -449,48 +492,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
     </div>
   </footer>
 
-  <!-- ✅ Lazy-load map -->
-  <script>
-    (function() {
-      function loadMap(placeholder) {
-        if (!placeholder) return;
-        var src = placeholder.getAttribute('data-src');
-        if (!src) return;
-        var iframe = document.createElement('iframe');
-        iframe.src = src;
-        iframe.title = 'Lateef Duplex Luxuria map';
-        iframe.allowFullscreen = true;
-        iframe.loading = 'lazy';
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.style.position = 'absolute';
-        iframe.style.top = 0;
-        iframe.style.left = 0;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        placeholder.parentNode.replaceChild(iframe, placeholder);
-      }
-
-      var placeholder = document.querySelector('.map-placeholder');
-      if (!placeholder) return;
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              loadMap(placeholder);
-              io.disconnect();
-            }
-          });
-        }, { rootMargin: '200px' });
-        io.observe(placeholder);
-      }
-
-      placeholder.addEventListener('click', function() { loadMap(placeholder); });
-      placeholder.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') loadMap(placeholder);
-      });
-    })();
-  </script>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js" defer></script>
 
