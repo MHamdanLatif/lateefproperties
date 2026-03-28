@@ -1752,3 +1752,29 @@ address {
     margin-top: 15px;
   }
 }
+
+.hidden {
+  display: none;
+}
+
+#thankYouMessage {
+  text-align: center;
+  background: #f8f8f8;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 600px) {
+  #thankYouMessage {
+    padding: 20px;
+    font-size: 14px;
+  }
+}

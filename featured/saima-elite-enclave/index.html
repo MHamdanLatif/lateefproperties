@@ -9,11 +9,10 @@
 
   <title>Saima Elite Enclave | Lateef Properties</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- ✅ Preload your hero image (replace with actual) -->
-  <link rel="preload" href="Elite-Landing-Banner.png" as="image">
+  <link rel="preload" href="Elite-Landing-Banner.jpg" as="image">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -98,15 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <!-- ✅ HERO -->
   <section class="hero">
-     <img 
-    src="Elite-Landing-Banner.png" 
-    alt="Hero Background" 
-    class="hero-bg"
-    loading="lazy"
-    >
+     <img src="Elevation.jpg" alt="Hero Background" class="hero-bg" fetchpriority="high" decoding="async">
     <div class="hero-header">
       
-      <img src="../../assets/Lateef-Properties Logo-withoutBG.png" class="hero-logo" loading="lazy" alt="Lateef Properties logo">
+      <img src="../../assets/Lateef-Properties Logo-withoutBG.png" class="hero-logo" fetchpriority="high" decoding="async" alt="Lateef Properties logo">
       <h1>Lateef Properties</h1>
     </div>
 
@@ -149,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <!-- LEFT SIDE (IMAGE) -->
       <div class="featured-image">
         <span class="featured-badge">Featured</span>
-        <img src="Elevation.png" alt="Saima Elite Enclave apartments in Gulistan-e-Jauhar Block 11, Karachi" loading="lazy" />
+        <img src="Elite-Landing-Banner.jpg" alt="Saima Elite Enclave apartments in Gulistan-e-Jauhar Block 11, Karachi" loading="lazy" />
       </div>
 
       <!-- RIGHT SIDE (CONTENT) -->
@@ -286,52 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </section>
 -->
-  <!-- ✅ LOCATION SECTION (Embedded Map) -->
-  <style>
-    .location-section {
-      padding: 60px 8%;
-      text-align: center;
-      background: transparent;
-      color: #2b2c34;
-    }
-    .location-section .section-title {
-      font-size: 2.2rem;
-      color: #2f3558;
-      margin-bottom: 6px;
-    }
-    .location-section .section-subtitle {
-      color: #6d6e75;
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
-    .map-container {
-      max-width: 1200px;
-      margin: 18px auto 0 auto;
-      position: relative;
-      padding-bottom: 45%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .map-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    @media (max-width: 900px) {
-      .location-section { padding: 40px 4%; }
-      .map-container { padding-bottom: 60%; }
-      .location-section .section-title { font-size: 1.6rem; }
-    }
-    @media (max-width: 480px) {
-      .map-container { padding-bottom: 75%; }
-      .location-section .section-title { font-size: 1.4rem; }
-    }
-  </style>
+  
 
   <section class="location-section">
     <h2 class="section-title">Location</h2>
@@ -484,9 +433,9 @@ document.addEventListener("DOMContentLoaded", function () {
   </script>
 
   <!-- ✅ intl-tel-input (keep single include; remove duplicates) -->
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js" defer></script>
 
-  <!-- Pabbly Connect -->
+  <!-- Privyr Connect -->
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("leadForm");

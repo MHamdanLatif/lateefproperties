@@ -9,11 +9,11 @@
 
   <title>Saima Uptown Sukkur | Lateef Properties</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- ✅ Preload hero image -->
-  <link rel="preload" href="Elevation.png" as="image">
+  <link rel="preload" href="Elevation.jpg" as="image">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -90,16 +90,12 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
   <!-- ✅ HERO -->
    
   <section class="hero">
-    <img 
-    src="Elevation.png" 
-    alt="Hero Background" 
-    class="hero-bg"
-    loading="lazy"
-    >
-    <div class="hero-header">
-      <img src="../../assets/Lateef-Properties Logo-withoutBG.png" class="hero-logo" loading="lazy" alt="Lateef Properties logo">
-      <h1>Lateef Properties</h1>
-    </div>
+    <img src="Elevation.jpg" alt="Hero Background" class="hero-bg" fetchpriority="high" decoding="async">
+
+<div class="hero-header">
+  <img src="../../assets/Lateef-Properties Logo-withoutBG.png" class="hero-logo" fetchpriority="high" decoding="async" alt="Lateef Properties logo">
+  <h1>Lateef Properties</h1>
+</div>
 
     <div class="hero-subheading">Your Partner in Property & Prosperity</div>
 
@@ -138,7 +134,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
       <!-- LEFT SIDE (IMAGE) -->
       <div class="featured-image">
         <span class="featured-badge">Featured</span>
-        <img src="Elevation.png" alt="Saima Uptown Sukkur - plots" loading="lazy" />
+        <img src="Elevation.jpg" alt="Saima Uptown Sukkur - plots" loading="lazy" />
       </div>
 
       <!-- RIGHT SIDE (CONTENT) -->
@@ -267,61 +263,16 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 
     <div class="project-gallery">
       <!-- Replace with actual project images -->
-      <img src="saima-uptown-1.png" loading="lazy" alt="Saima Uptown Sukkur community view" />
-      <img src="saima-uptown-2.png" loading="lazy" alt="Saima Uptown Sukkur roads and infrastructure" />
-      <img src="saima-uptown-3.png" loading="lazy" alt="Saima Uptown Sukkur Street views" />
-      <img src="saima-uptown-4.png" loading="lazy" alt="Saima Uptown Sukkur Amenities" />
-      <img src="saima-uptown-5.png" loading="lazy" alt="Saima Uptown Sukkur Homes" />
-      <img src="saima-uptown-6.png" loading="lazy" alt="Saima Uptown Sukkur Office" />
+      <img src="saima-uptown-1.jpg" loading="lazy" alt="Saima Uptown Sukkur community view" />
+      <img src="saima-uptown-2.jpg" loading="lazy" alt="Saima Uptown Sukkur roads and infrastructure" />
+      <img src="saima-uptown-3.jpg" loading="lazy" alt="Saima Uptown Sukkur Street views" />
+      <img src="saima-uptown-4.jpg" loading="lazy" alt="Saima Uptown Sukkur Amenities" />
+      <img src="saima-uptown-5.jpg" loading="lazy" alt="Saima Uptown Sukkur Homes" />
+      <img src="saima-uptown-6.jpg" loading="lazy" alt="Saima Uptown Sukkur Office" />
     </div>
   </section>
 
-  <!-- ✅ LOCATION SECTION (Embedded Map) -->
-  <style>
-    .location-section {
-      padding: 60px 8%;
-      text-align: center;
-      background: transparent;
-      color: #2b2c34;
-    }
-    .location-section .section-title {
-      font-size: 2.2rem;
-      color: #2f3558;
-      margin-bottom: 6px;
-    }
-    .location-section .section-subtitle {
-      color: #6d6e75;
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
-    .map-container {
-      max-width: 1200px;
-      margin: 18px auto 0 auto;
-      position: relative;
-      padding-bottom: 45%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .map-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    @media (max-width: 900px) {
-      .location-section { padding: 40px 4%; }
-      .map-container { padding-bottom: 60%; }
-      .location-section .section-title { font-size: 1.6rem; }
-    }
-    @media (max-width: 480px) {
-      .map-container { padding-bottom: 75%; }
-      .location-section .section-title { font-size: 1.4rem; }
-    }
-  </style>
+  
 
   <section class="location-section">
     <h2 class="section-title">Location</h2>
@@ -341,6 +292,48 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
       </div>
     </div>
   </section>
+  <!-- ✅ Lazy-load map -->
+  <script>
+    (function() {
+      function loadMap(placeholder) {
+        if (!placeholder) return;
+        var src = placeholder.getAttribute('data-src');
+        if (!src) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.title = 'Saima Uptown Sukkur map';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.style.position = 'absolute';
+        iframe.style.top = 0;
+        iframe.style.left = 0;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        placeholder.parentNode.replaceChild(iframe, placeholder);
+      }
+
+      var placeholder = document.querySelector('.map-placeholder');
+      if (!placeholder) return;
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              loadMap(placeholder);
+              io.disconnect();
+            }
+          });
+        }, { rootMargin: '200px' });
+        io.observe(placeholder);
+      }
+
+      placeholder.addEventListener('click', function() { loadMap(placeholder); });
+      placeholder.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') loadMap(placeholder);
+      });
+    })();
+  </script>
 
   <!-- ✅ FUNNEL -->
   <section class="funnel">
@@ -430,50 +423,9 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
     </div>
   </footer>
 
-  <!-- ✅ Lazy-load map -->
-  <script>
-    (function() {
-      function loadMap(placeholder) {
-        if (!placeholder) return;
-        var src = placeholder.getAttribute('data-src');
-        if (!src) return;
-        var iframe = document.createElement('iframe');
-        iframe.src = src;
-        iframe.title = 'Saima Uptown Sukkur map';
-        iframe.allowFullscreen = true;
-        iframe.loading = 'lazy';
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.style.position = 'absolute';
-        iframe.style.top = 0;
-        iframe.style.left = 0;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        placeholder.parentNode.replaceChild(iframe, placeholder);
-      }
+  
 
-      var placeholder = document.querySelector('.map-placeholder');
-      if (!placeholder) return;
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              loadMap(placeholder);
-              io.disconnect();
-            }
-          });
-        }, { rootMargin: '200px' });
-        io.observe(placeholder);
-      }
-
-      placeholder.addEventListener('click', function() { loadMap(placeholder); });
-      placeholder.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') loadMap(placeholder);
-      });
-    })();
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js" defer></script>
 
   <!-- Pabbly Connect -->
   <script>

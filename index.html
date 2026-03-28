@@ -22,10 +22,7 @@
 
    <!-- Favicon -->
   <link rel="icon" href="assets/Lateef-Properties Logo.png" alt="Lateef Properties Agency Logo" type="image/png">
-  
-  <!-- Preload Hero Image -->
-  <link rel="preload" href="assets/Lateef-Properties Banner.png" as="image">
-  
+ 
  
 
 <!-- Google tag (gtag.js) -->
@@ -37,6 +34,7 @@
 
   gtag('config', 'G-3SH3KB0RZS');
 </script>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -219,7 +217,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
     <div class="properties">
           <!--Saima Elite Enclave-->
       <div class="card">
-  <img src="featured/saima-elite-enclave/Elevation.png" alt="Saima Elite Enclave" loading="lazy" decoding="async">
+  <img src="featured/saima-elite-enclave/Elevation.jpg" alt="Saima Elite Enclave" loading="lazy" decoding="async">
   <div class="card-body">
     <h3>Saima Elite Enclave</h3>
     <p class="Project-Type">Residential Apartments</p>
@@ -235,7 +233,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 </div>
 <!--Saima Uptown-->
       <div class="card">
-      <img src="featured/saima-uptown/Elevation.png" alt="Saima Uptown Sukkur" loading="lazy" decoding="async">
+      <img src="featured/saima-uptown/Elevation.jpg" alt="Saima Uptown Sukkur" loading="lazy" decoding="async">
       <div class="card-body">
     <h3>Saima Uptown</h3>
     <p class="Project-Type">Residential Plots & Villas</p>
@@ -253,7 +251,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
         <div class="card">
 
   <div class="card-image">
-    <img src="featured/lateef-duplex-luxuria/Elevation.png"
+    <img src="featured/lateef-duplex-luxuria/Elevation.jpg"
          alt="Lateef Duplex Luxuria"
          loading="lazy"
          decoding="async">
@@ -293,7 +291,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 <div class="card">
   
 
-  <img src="featured/saima-center-point/Elevation.png" 
+  <img src="featured/saima-center-point/Elevation.jpg" 
        alt="Saima Center Point" 
        loading="lazy" 
        decoding="async">
@@ -321,7 +319,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
         <!--Tulip Comforts-->
         <div class="card">
           <div class="coming-soon"><span>Pre-Launch</span></div>
-        <img src="featured/tulip-comfort/Elevation.png" alt="Tulip Comfort" loading="lazy" decoding="async">
+        <img src="featured/tulip-comfort/Elevation.jpg" alt="Tulip Comfort" loading="lazy" decoding="async">
         <div class="card-body">
           <h3>Tulip Comfort</h3>
           <p class="Project-Type">Residential Apartments</p>
@@ -340,7 +338,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 <div class="card">
   <div class="coming-soon"><span>Coming Soon</span></div>
 
-  <img src="featured/saima-dreams/elevation.png" 
+  <img src="featured/saima-dreams/elevation.jpg" 
        alt="Saima Dreams" 
        loading="lazy" 
        decoding="async">
@@ -370,7 +368,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 <div class="card">
   <div class="coming-soon"><span>Coming Soon</span></div>
   
-  <img src="featured/saima-shields-tower/elevation.png" 
+  <img src="featured/saima-shields-tower/elevation.jpg" 
        alt="Saima Shield Towers" 
        loading="lazy" 
        decoding="async">
@@ -634,33 +632,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<style>
-.hidden {
-  display: none;
-}
 
-#thankYouMessage {
-  text-align: center;
-  background: #f8f8f8;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  margin-top: 20px;
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-@media (max-width: 600px) {
-  #thankYouMessage {
-    padding: 20px;
-    font-size: 14px;
-  }
-}
-</style>
   </div>
 </section>
 
@@ -713,48 +685,23 @@ document.addEventListener('DOMContentLoaded', function () {
   <!-- Scripts -->
 
 <script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.hero-slideshow .slides img');
-  const totalSlides = slides.length;
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
 
-  function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[index].classList.add('active');
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-  }
-
-  // Show first slide initially
-  showSlide(currentSlide);
-
-  // Auto change every 4 seconds
-  setInterval(nextSlide, 4000);
-
-//nav active link on scroll
-  document.addEventListener('scroll', function() {
-  const sections = ['hero-slideshow', 'aboutus', 'listings', 'services', 'why-choose-us', 'contact'];
-  let current = '';
-  sections.forEach(id => {
-    const section = document.getElementById(id);
-    if (section) {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 80 && rect.bottom > 80) {
-        current = id;
-      }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').replace('#', '') === entry.target.id) {
+          link.classList.add('active');
+        }
+      });
     }
   });
-  document.querySelectorAll('nav a').forEach(link => {
-    link.classList.remove('active');
-    if (current && link.getAttribute('href').replace('#','').toLowerCase() === current.toLowerCase()) {
-      link.classList.add('active');
-    }
-  });
-});
+}, { threshold: 0.5 }); // Triggers when 50% of the section is visible
 
-
+sections.forEach(section => observer.observe(section));
 </script>
 
 <!-- Image Modal -->
