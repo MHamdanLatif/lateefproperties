@@ -173,7 +173,7 @@ body {
 .location-section,
 .faq-section {
   padding: 60px 8%;
-  text-align: center;
+  text-align: left;
   font-family: "Poppins", sans-serif;
   opacity: 0;
   transform: translateY(30px);
@@ -209,6 +209,7 @@ body {
   color: #6d6e75;
   margin-bottom: 40px;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .location-section .section-subtitle { margin-bottom: 20px; font-size: 1rem; }
@@ -353,23 +354,23 @@ body {
 .highlights-wrapper {
   max-width: 1100px;
   margin: 50px auto 0;
-  padding: 45px 50px;
+  padding: 50px 60px;
   background: #ffffff;
   border-radius: 22px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 45px;
+  gap: 70px; /* Increased gap to match the image */
   text-align: left;
   position: relative;
   z-index: 2;
 }
 
 .highlights-column h3 {
-  font-size: 1.35rem;
-  margin-bottom: 22px;
+  font-size: 1.4rem;
+  margin-bottom: 28px;
   color: #2f3558;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .highlights-list { list-style: none; padding: 0; margin: 0; }
@@ -383,6 +384,41 @@ body {
   line-height: 1.55;
 }
 .highlights-list i { color: #545fa5; font-size: 1rem; margin-top: 4px; }
+
+.highlights-column:first-child .highlights-list li {
+  display: grid;
+  grid-template-columns: 24px 105px 1fr; /* Forces perfect vertical alignment */
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Right Column: 2-Part Grid (Icon | Description) */
+.highlights-column:last-child .highlights-list li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.highlights-list i {
+  color: #545fa5;
+  font-size: 1.1rem;
+  margin-top: 3px;
+  text-align: left;
+}
+
+.highlights-list strong {
+  color: #333;
+  font-weight: 700;
+}
 
 /* ==========================================================
    PROJECT GALLERY
@@ -409,6 +445,16 @@ body {
 .project-gallery img:hover {
   transform: scale(1.02);
   box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+}
+
+.project-gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px; /* Matches your image border radius */
+}
+
+.project-gallery img {
+  cursor: pointer; /* Changes the mouse to a pointing hand on hover */
 }
 
 /* ==========================================================
