@@ -742,8 +742,30 @@ body {
 
 /* SMALL TABLET (max-width: 992px) */
 @media (max-width: 992px) {
-  .project-gallery { grid-template-columns: 1fr; gap: 20px; max-width: 450px; margin: 0 auto; }
-  .project-gallery img { padding: 12px; }
+  .project-gallery { 
+      display: flex; 
+      flex-wrap: nowrap;
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory; /* Enables the magnetic snapping effect */
+      gap: 15px; 
+      max-width: 100%; 
+      margin: 0; 
+      padding: 10px 5%; /* Adds padding so the first slide doesn't stick to the edge */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+      scroll-behavior: smooth;
+    }
+
+    /* 2. Hide the ugly default scrollbar but keep the functionality */
+    .project-gallery::-webkit-scrollbar { display: none; }
+    .project-gallery { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* 3. Size the slides and snap them to the center */
+    .project-gallery a { 
+      flex: 0 0 85%; /* Sets slide width to 85% so the next image "peeks" in */
+      scroll-snap-align: center; /* Snaps the image right in the middle */
+    }
+
+    .project-gallery img { padding: 0; border-radius: 12px; }
   
   .footer-container { grid-template-columns: repeat(2, 1fr); gap: 25px; flex-wrap: wrap; }
   .footer-container > div { flex: 1 1 45%; }
@@ -781,7 +803,7 @@ body {
   .funnel-steps { grid-template-columns: 1fr; gap: 18px; }
   .step { padding: 18px 10px; }
   
-  .highlights-wrapper { grid-template-columns: 1fr; padding: 35px 28px; }
+  .highlights-wrapper { grid-template-columns: 1fr; padding: 35px 28px; gap: 30px; }
   
   .location-section { padding: 40px 4%; }
   .map-container { padding-bottom: 60%; }
@@ -806,7 +828,9 @@ body {
   
   .property-description { width: 100% !important; margin-bottom: 8px; }
   .features, .buttons { width: 100%; gap: 8px; }
-  
+
+  .highlights-wrapper { grid-template-columns: 1fr; padding: 35px 28px; gap: 10px; }
+
   .project-gallery { gap: 15px; padding: 0 15px; }
   .project-gallery img { padding: 10px; border-radius: 12px; }
   
