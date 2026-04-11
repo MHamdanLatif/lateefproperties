@@ -582,15 +582,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   }
 
-  function postToPrivyr(payload) {
-    return fetch("https://www.privyr.com/api/v1/incoming-leads/0vZfjMQw/GA3w5rex", {
+  function postToCloudflare(payload) {
+    // 🛑 REPLACE THIS URL with your actual Cloudflare Worker URL
+    return fetch("https://lucky-heart-7f63lateef-capi-router.m-hamdan-latif2001.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     }).then(async (res) => {
       if (!res.ok) {
         const text = await res.text().catch(() => "");
-        throw new Error("Privyr request failed: " + (text || res.status));
+        throw new Error("Server request failed: " + (text || res.status));
       }
       return res;
     });
@@ -602,27 +603,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const eventId = "lp_" + Date.now() + "_" + Math.random().toString(16).slice(2);
 
     const payload = {
-    full_name: document.getElementById("name").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    property_type: document.getElementById("property-type").value,
-    budget: document.getElementById("budget").value,
-    project: document.getElementById("project").value || "General Inquiry",
-    message: document.getElementById("message").value,
-    source: document.getElementById("leadSource")?.value || "Website - Main Contact Form",
-    page_url: window.location.href,
-    event_id: eventId
+      full_name: document.getElementById("name").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      property_type: document.getElementById("property-type").value,
+      budget: document.getElementById("budget").value,
+      project: document.getElementById("project").value || "General Inquiry",
+      message: document.getElementById("message").value,
+      source: document.getElementById("leadSource")?.value || "Website - Main Contact Form",
+      page_url: window.location.href,
+      eventID: eventId // UPDATED to match the worker script
     };
 
-    postToPrivyr(payload)
+    postToCloudflare(payload)
       .then(() => {
-        // ✅ Fire Meta Lead only after successful Privyr submission
+        // ✅ Fire Meta Lead only after successful Server submission
         if (typeof fbq === "function") {
           fbq("track", "Lead", {
             content_name: "Lateef Properties - Contact Form",
             project: payload.project,
             source: payload.source
-          }, { eventID: eventId });
+          }, { eventID: eventId }); // Passes the same ID to the browser pixel
         }
 
         showThankYou();
