@@ -539,7 +539,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
       status.style.color = "blue";
 
       // Sending data to your new PHP router instead of Privyr directly
-      fetch("/process-lead.php", {
+      fetch("https://lucky-heart-7f63lateef-capi-router.m-hamdan-latif2001.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
