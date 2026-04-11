@@ -496,7 +496,7 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
 
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js" defer></script>
 
-  <!-- privyr -->
+  <!-- Privyr Connect -->
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("leadForm");
@@ -524,43 +524,53 @@ src="https://www.facebook.com/tr?id=2105194773656211&ev=PageView&noscript=1"
       const fullPhoneNumber = iti.getNumber();
       fullPhoneInput.value = fullPhoneNumber;
 
+      // Generate a Unique Event ID for Meta Deduplication
+      const uniqueEventId = 'lead_' + new Date().getTime();
+
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      data.project = document.getElementById("FeaturedProject").value;
+      data.source  = document.getElementById("LeadSource").value;
       data.phone = fullPhoneNumber;
       data.page_url = window.location.href;
+      data.eventID = uniqueEventId; // Passing the ID to the backend
 
       status.textContent = "Processing your request...";
       status.style.color = "blue";
 
-      fetch("https://www.privyr.com/api/v1/incoming-leads/0vZfjMQw/GA3w5rex", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data)
-})
-.then((res) => {
-  if (!res.ok) throw new Error("Privyr request failed");
+      // Sending data to your new PHP router instead of Privyr directly
+      fetch("/process-lead.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then((res) => {
+        if (res && res.ok === false) throw new Error("Server request failed");
 
-  // ✅ Track Lead only after successful Privyr submission
-  if (typeof fbq === "function") {
-    fbq('track', 'Lead', {
-      project: document.getElementById("FeaturedProject").value,
-      source: document.getElementById("LeadSource")?.value || "Website Landing Page"
-    });
-  }
+        // Fire the browser Pixel with the matching Event ID
+        if (typeof fbq === "function") {
+          fbq('track', 'Lead', {
+            project: data.project,
+            source: data.source
+          }, {
+            eventID: uniqueEventId 
+          });
+        }
 
-  status.textContent = "Thank you! Your consultation has been booked.";
-  status.style.color = "green";
-  form.reset();
-  iti.setCountry("pk");
-})
-.catch((err) => {
-  console.error("Submission error:", err);
-  status.textContent = "Oops! Something went wrong. Please try again.";
-  status.style.color = "red";
-});
+        status.textContent = "Thank you! Your consultation has been booked.";
+        status.style.color = "green";
+        form.reset();
+        iti.setCountry("pk");
+      })
+      .catch((err) => {
+        console.error("Submission error:", err);
+        status.textContent = "Oops! Something went wrong. Please try again.";
+        status.style.color = "red";
+      });
     });
   });
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof fbq === "function") {
